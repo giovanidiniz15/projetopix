@@ -23,7 +23,7 @@ import java.util.List;
 @AllArgsConstructor //Criar os contrutores automaticamente
 public class ChaveController {
 
-    @Autowired
+    @Autowired// pra injetar dependencia
     ChaveService chaveService;
 
     // CADASTRAR CHAVE PIX

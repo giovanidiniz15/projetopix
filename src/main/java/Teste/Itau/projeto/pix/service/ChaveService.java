@@ -331,7 +331,7 @@ public class ChaveService {
         { throw new ResponseStatusException(HttpStatus.NOT_FOUND,"Id não encontrado!");
         }
 
-        if (!(chaveAtual.getDatainativacao() == null)){
+        if (chaveAtual.getDatainativacao() != null){
             throw new ResponseStatusException(HttpStatus.UNPROCESSABLE_ENTITY,"Chave já desativada!");
         }
 
@@ -373,7 +373,7 @@ public class ChaveService {
             return chaveModel;
         }
         catch (Exception e){
-            return null;
+            throw new ResponseStatusException(HttpStatus.UNPROCESSABLE_ENTITY,"Chave não encontrada!");
         }
 
     }
@@ -383,12 +383,12 @@ public class ChaveService {
         try {
             List<ConsultaPadrao> listarChaves = chaveRepository.findByTipoChave(tipo);
             if (listarChaves.size()<=0){
-                return null;
+                throw new ResponseStatusException(HttpStatus.UNPROCESSABLE_ENTITY,"Verifique os dados inseridos!");
             }
             return listarChaves;
         }
         catch (Exception e){
-            return null;
+            throw new ResponseStatusException(HttpStatus.UNPROCESSABLE_ENTITY,"Verifique os dados inseridos!");
         }
 
     }
@@ -397,11 +397,11 @@ public class ChaveService {
         try {
             List<ConsultaPadrao> listarChave = chaveRepository.findByAgenciaConta(agencia, conta);
             if (listarChave.size() <= 0) {
-                return null;
+                throw new ResponseStatusException(HttpStatus.UNPROCESSABLE_ENTITY,"Verifique os dados inseridos!");
             }
             return listarChave;
         } catch (Exception e) {
-            return null;
+            throw new ResponseStatusException(HttpStatus.UNPROCESSABLE_ENTITY,"Verifique os dados inseridos!");
         }
     }
 
@@ -409,11 +409,11 @@ public class ChaveService {
         try {
             List<ConsultaPadrao> listarPorNome = chaveRepository.findByNome(nome);
             if (listarPorNome.size()<=0){
-                return null;
+                throw new ResponseStatusException(HttpStatus.UNPROCESSABLE_ENTITY,"Verifique os dados inseridos!");
             }
             return listarPorNome;
         } catch (Exception e){
-            return null;
+            throw new ResponseStatusException(HttpStatus.UNPROCESSABLE_ENTITY,"Verifique os dados inseridos!");
         }
     }
 }
